@@ -1,0 +1,9 @@
+﻿# Add this logic to your main training loop in train_orchestrator.py
+def get_environment_difficulty(cycle):
+    if cycle < 100: return 1  # Easy
+    if cycle < 500: return 2  # Medium
+    return 3                  # Hard
+
+# In your loop:
+# difficulty = get_environment_difficulty(current_cycle)
+# env.set_difficulty(difficulty)

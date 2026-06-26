@@ -1,0 +1,6 @@
+# MuZero v14-0 Configuration
+# Tuning Parameters
+learning_rate: 0.001
+mcts_simulations: 200
+discount_factor: 0.99
+batch_size: 32

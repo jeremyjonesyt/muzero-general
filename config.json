@@ -1,0 +1,9 @@
+{
+    "lr_init": 0.0005,
+    "lr_decay_steps": 10000,
+    "entropy_reg": 0.01,
+    "simulation_budget": 50,
+    "grad_clip_norm": 5.0,
+    "discount": 0.99,
+    "buffer_size": 2000
+}
