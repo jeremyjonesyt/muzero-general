@@ -1,16 +1,16 @@
 # ====================================================================
-# MASTER MUZERO AUTOMATION ENGINE (WITH CPU THROTTLING & CLOUD BACKUP)
+# MASTER MUZERO AUTOMATION ENGINE - PHASE 2 (BASELINE: 390.4)
 # ====================================================================
 
 # --- Deep Automation Configuration Framework ---
-$totalBursts     = 50                # Extended deep production run count
+$totalBursts     = 50                
 $weightFile      = "./muzero_tripartite_model.pth"
 $backupFile      = "./backup_best_model.pth"
 $tmpFile         = "./muzero_tripartite_model.pth.tmp"
 $logFile         = "./automation_flywheel.log"
 
 # Setup structural variables and core engine baseline
-$bestStability   = 342.30            
+$bestStability   = 390.40            # <-- NEW LOCKED-IN BASELINE GATEKEEPER
 $pyBinary        = "python"
 $consecutiveStalls = 0
 
@@ -24,8 +24,8 @@ function Log-Telemetry($message, $color = "Gray") {
 
 Clear-Host
 Log-Telemetry "====================================================" "Cyan"
-Log-Telemetry "[*] LAUNCHING ULTRA-DEEP AUTOMATED MUZERO FLYWHEEL" "Cyan"
-Log-Telemetry "[*] Established Baseline Safety Gatekeeper: $bestStability Steps" "Gray"
+Log-Telemetry "[*] LAUNCHING ULTRA-DEEP AUTOMATED MUZERO FLYWHEEL - PHASE 2" "Cyan"
+Log-Telemetry "[*] Established Baseline Safety Gatekeeper: $bestStability Steps" "Green"
 Log-Telemetry "====================================================" "Cyan"
 
 # --- Master Production Loop ---
@@ -46,7 +46,6 @@ for ($burst = 1; $burst -le $totalBursts; $burst++) {
     $env:OMP_NUM_THREADS = "2"
     $env:MKL_NUM_THREADS = "2"
     $env:OPENBLAS_NUM_THREADS = "2"
-    $env:VECLIB_MAXIMUM_THREADS = "2"
     $env:NUMEXPR_NUM_THREADS = "2"
     # --------------------------------------
 
@@ -54,7 +53,7 @@ for ($burst = 1; $burst -le $totalBursts; $burst++) {
     $psi = New-Object System.Diagnostics.ProcessStartInfo
     $psi.FileName = $pyBinary
     $psi.Arguments = "main.py"
-    $psi.WorkingDirectory = (Get-Item .).FullName   # <-- FIX: Forces background task to stay in your current project folder
+    $psi.WorkingDirectory = (Get-Item .).FullName   
     $psi.UseShellExecute = $false
     $psi.RedirectStandardOutput = $false
     $psi.RedirectStandardError = $false
